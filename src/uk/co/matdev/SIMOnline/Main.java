@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 
 
 
-import org.lwjgl.opengl.Display;
+//import org.lwjgl.opengl.Display;
 import org.newdawn.slick.CanvasGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -17,7 +17,7 @@ public class Main extends StateBasedGame {
     public static int HEIGHT = 600;
     public static final boolean FULLSCREEN = false;
 
-    public static final String TITLE = "SlickTiled 0.1a";
+    public static final String TITLE = "SlickTiled Testing Canvas";
 
     public Main(String name) {
         super(name);
@@ -44,14 +44,15 @@ public class Main extends StateBasedGame {
             frame.addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
                     //TODO: save stuff?
-                    Display.destroy();
+                    //Display.destroy();
 
                     System.out.println("Exiting " + TITLE + "...");
                     System.exit(0);
                 }
             });
             frame.setVisible(true);
-
+            Graphics g = container.getGraphics();
+            g.drawString("hello", WIDTH/2, HEIGHT/2);
             container.start();
         } catch (Exception e) {
             e.printStackTrace();
