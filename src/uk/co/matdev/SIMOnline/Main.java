@@ -1,4 +1,4 @@
-package co.uk.matdev.SIMOnline;
+package uk.co.matdev.SIMOnline;
 
 /**
  * Created by joeisaacs on 11/02/2015.
