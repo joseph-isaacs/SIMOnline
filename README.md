@@ -9,3 +9,5 @@ Here are a few tutorials:
 https://www.youtube.com/watch?v=9Yxx6_wGneI
 
 https://www.youtube.com/watch?v=9Yxx6_wGneI
+
+$\not \emptyset = \{\pi, e, 1, \mathcal{P}(\emptyset), \sqrt{2}, 9000+dx, \nabla \}$
