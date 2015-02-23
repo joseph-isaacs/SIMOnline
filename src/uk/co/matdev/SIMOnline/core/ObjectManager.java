@@ -9,18 +9,19 @@ import java.util.List;
  * Created by joeisaacs on 23/02/2015.
  */
 public class ObjectManager {
-    private List<SIMObject> object = new LinkedList<>();
+    private List<SIMObject> objects = new LinkedList<>();
 
-    public ObjectManager(){
-        object.add(new WorldManager());
-    }
-
+    public ObjectManager(){}
 
     public void update(){
-        object.forEach(SIMObject::doUpdate);
+        objects.forEach(SIMObject::doUpdate);
     }
 
     public void render(Graphics g){
-        object.forEach((object) -> object.draw(g));
+        objects.forEach((object) -> object.draw(g));
+    }
+
+    public void addObject(SIMObject o){
+        objects.add(o);
     }
 }
