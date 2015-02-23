@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 /**
  * Created by joeisaacs on 23/02/2015.
  */
-public class ViewMangager implements SIMObject {
+public class ViewManager implements SIMObject {
 
     WorldMangager mWorld = new WorldMangager();
 

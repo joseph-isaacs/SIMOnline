@@ -8,23 +8,19 @@ import java.util.List;
 /**
  * Created by joeisaacs on 23/02/2015.
  */
-public class ObjectMangager {
+public class ObjectManager {
     private List<SIMObject> object = new LinkedList<>();
 
-    public ObjectMangager(){
+    public ObjectManager(){
         object.add(new WorldMangager());
     }
 
 
     public void update(){
-        for(SIMObject r: object){
-            r.doUpdate();
-        }
+        object.forEach(SIMObject::doUpdate);
     }
 
     public void render(Graphics g){
-        for(SIMObject r: object){
-            r.draw(g);
-        }
+        object.forEach((object) -> object.draw(g));
     }
 }
