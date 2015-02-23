@@ -6,8 +6,7 @@ package uk.co.matdev.SIMOnline;
 
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.*;
-import org.newdawn.slick.Color;
-import uk.co.matdev.SIMOnline.core.ObjectMangager;
+import uk.co.matdev.SIMOnline.core.ObjectManager;
 
 
 public class Main extends BasicGame {
@@ -15,7 +14,7 @@ public class Main extends BasicGame {
     public static int HEIGHT = 1000;
     public static final boolean FULLSCREEN = false;
 
-    private ObjectMangager oM = new ObjectMangager();
+    private ObjectManager oM = new ObjectManager();
 
     public static final String TITLE = "SlickTiled Testing Canvas";
 
