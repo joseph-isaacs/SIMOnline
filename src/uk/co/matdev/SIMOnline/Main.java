@@ -43,8 +43,8 @@ public class Main extends BasicGame {
         AppGameContainer app = new AppGameContainer(new Main("Hello"));
 
         app.setVSync(true);
-        app.setDisplayMode(1100, 1100, false);
-        app.setTargetFrameRate(100);
+        app.setDisplayMode(1920, 1080, true);
+        app.setTargetFrameRate(60);
         app.start();
     }
 
