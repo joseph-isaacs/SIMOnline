@@ -15,7 +15,7 @@ public class Main extends BasicGame {
     public static int HEIGHT = 1000;
     public static final boolean FULLSCREEN = false;
 
-    private ObjectMangager om = new ObjectMangager();
+    private ObjectMangager oM = new ObjectMangager();
 
     public static final String TITLE = "SlickTiled Testing Canvas";
 
@@ -35,7 +35,7 @@ public class Main extends BasicGame {
 
     @Override
     public void render(GameContainer gameContainer, org.newdawn.slick.Graphics graphics) throws SlickException {
-        om.render(graphics);
+        oM.render(graphics);
     }
 
     public static void main(String args[]) throws SlickException {
@@ -43,7 +43,9 @@ public class Main extends BasicGame {
 
         AppGameContainer app = new AppGameContainer(new Main("Hello"));
 
-        app.setDisplayMode(800, 600, false);
+        app.setVSync(true);
+        app.setDisplayMode(1100, 1100, false);
+        app.setTargetFrameRate(100);
         app.start();
     }
 
