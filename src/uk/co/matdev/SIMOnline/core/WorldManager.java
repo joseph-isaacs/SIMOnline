@@ -7,7 +7,7 @@ import uk.co.matdev.SIMOnline.maths.Vector2d;
 /**
  * Created by joeisaacs on 23/02/2015.
  */
-public class WorldMangager implements SIMObject{
+public class WorldManager implements SIMObject{
 
     private Vector2d<Integer> mWorldSize = new Vector2d<>(80,80);
 

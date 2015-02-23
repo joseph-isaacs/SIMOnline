@@ -12,7 +12,7 @@ public class ObjectManager {
     private List<SIMObject> object = new LinkedList<>();
 
     public ObjectManager(){
-        object.add(new WorldMangager());
+        object.add(new WorldManager());
     }
 
 

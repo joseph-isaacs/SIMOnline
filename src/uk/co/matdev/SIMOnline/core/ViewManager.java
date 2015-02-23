@@ -7,7 +7,7 @@ import org.newdawn.slick.Graphics;
  */
 public class ViewManager implements SIMObject {
 
-    WorldMangager mWorld = new WorldMangager();
+    WorldManager mWorld = new WorldManager();
 
     @Override
     public void draw(Graphics g) {
