@@ -1,7 +1,6 @@
 package uk.co.matdev.SIMOnline.slick2d;
 
 
-import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
 import uk.co.matdev.SIMOnline.core.GraphicsImp;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
