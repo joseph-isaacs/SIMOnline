@@ -20,7 +20,11 @@ public class GraphicsImpSlick2d implements GraphicsImp {
         setGraphicsContext(g);
     }
 
-
+    /**
+     *
+     * @param g The
+     * @see <a href="http://slick.ninjacave.com/javadoc/">Graphics</a>
+     */
     public void setGraphicsContext(Graphics g){
         mGraphics = g;
         if(mValidRectangle != null)
