@@ -4,6 +4,7 @@ package uk.co.matdev.SIMOnline.slick2d;
 import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
 import uk.co.matdev.SIMOnline.core.GraphicsImp;
+import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 
 import java.awt.Color;
 
@@ -12,17 +13,45 @@ import java.awt.Color;
  */
 public class GraphicsImpSlick2d implements GraphicsImp {
     Graphics mGraphics;
+    Rectangle2d<Integer> mValidRectangle;
+
+    GraphicsImpSlick2d(Graphics g, Rectangle2d<Integer> validRectangle){
+        setValidRectangle(validRectangle);
+        setGraphicsContext(g);
+    }
 
 
-    GraphicsImpSlick2d(Graphics g){
+    public void setGraphicsContext(Graphics g){
         mGraphics = g;
     }
 
+    public Graphics getGraphicsContext(){
+        return mGraphics;
+    }
+
+    public Rectangle2d<Integer> getValidRectangle(){
+        return mValidRectangle;
+    }
 
     @Override
-    public void drawRectangle(float x, float y, float width, float height) {
-        mGraphics.drawRect(x,y,width,height);
+    public void setValidRectangle(Rectangle2d validRectangle) {
+        mValidRectangle = validRectangle;
     }
+
+    @Override
+    public void drawRectangle(float x, float y, float width, float height, boolean filled) {
+        if(filled)
+            mGraphics.fillRect(x, y, width, height);
+        else
+
+            mGraphics.drawRect(x, y, width, height);
+    }
+
+    @Override
+    public void drawRectangle(Rectangle2d<Float> rect, boolean filled) {
+        drawRectangle(rect.getLeftBottomX(), rect.getLeftBottomY(), rect.getWidth(), rect.getHeight(), filled);
+    }
+
 
     @Override
     public void drawLine(float xStart, float yStart, float xEnd, float yEnd) {
