@@ -1,6 +1,8 @@
 package uk.co.matdev.SIMOnline.core;
 
 
+import uk.co.matdev.SIMOnline.maths.Rectangle2d;
+
 import java.awt.Color;
 
 /**
@@ -8,7 +10,12 @@ import java.awt.Color;
  */
 public interface GraphicsImp {
     //specific classes will implements this interface meaning that the graphics backend can be swapped out.
-    void drawRectangle(float x, float y,float width, float height);
+
+    void setValidRectangle(Rectangle2d validRectangle);
+
+    void drawRectangle(float x, float y,float width, float height, boolean filled);
+
+    void drawRectangle(Rectangle2d<Float> rect, boolean filled);
 
     void drawLine(float xStart, float yStart, float xEnd, float yEnd);
 
