@@ -15,6 +15,7 @@ public class GraphicsImpSlick2d implements GraphicsImp {
     Graphics mGraphics;
     Rectangle2d<Integer> mValidRectangle;
 
+    //only makes sense to instantiate this class with a validRectangle.
     GraphicsImpSlick2d(Graphics g, Rectangle2d<Integer> validRectangle){
         setValidRectangle(validRectangle);
         setGraphicsContext(g);
@@ -23,6 +24,8 @@ public class GraphicsImpSlick2d implements GraphicsImp {
 
     public void setGraphicsContext(Graphics g){
         mGraphics = g;
+        if(mValidRectangle != null)
+            mGraphics.translate(mValidRectangle.getLeftBottomX(), mValidRectangle.getLeftBottomY());
     }
 
     public Graphics getGraphicsContext(){
@@ -35,7 +38,13 @@ public class GraphicsImpSlick2d implements GraphicsImp {
 
     @Override
     public void setValidRectangle(Rectangle2d validRectangle) {
+        //will remove the old translation.
+        if(mValidRectangle != null)
+            mGraphics.translate(-mValidRectangle.getLeftBottomX(), -mValidRectangle.getLeftBottomY());
         mValidRectangle = validRectangle;
+
+        //will apply the new translation.
+        mGraphics.translate(mValidRectangle.getLeftBottomX(), mValidRectangle.getLeftBottomY());
     }
 
     @Override
