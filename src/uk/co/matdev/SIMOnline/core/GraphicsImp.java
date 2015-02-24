@@ -6,12 +6,36 @@ import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 import java.awt.Color;
 
 /**
- * Created by joeisaacs on 24/02/2015.
+ * <p>
+ * This is a Graphics implementation interface that
+ * is meant to be sub classed to provide implementations
+ * of how to draw to the screen in different ways.
+ * </p>
+ * <p>
+ * There is also a notion of of a part {@link Rectangle2d}  of the screen which
+ * it is valid to draw on it is up to the subclasses to choose
+ * to inforce this
+ * </p>
  */
 public interface GraphicsImp {
     //specific classes will implements this interface meaning that the graphics backend can be swapped out.
 
+    /**
+     *
+     * @param validRectangle
+     * This is a rectangle in which the graphics should be drawn.
+     */
+
     void setValidRectangle(Rectangle2d validRectangle);
+
+    /**
+     *
+     * @param x The x position of the bottom left corner of the rectangle
+     * @param y The y position of the bottom left corner of the rectangle
+     * @param width The width of the rectangle
+     * @param height The height of the rectangle
+     * @param filled Whether the rectangle should be filled
+     */
 
     void drawRectangle(float x, float y,float width, float height, boolean filled);
 
