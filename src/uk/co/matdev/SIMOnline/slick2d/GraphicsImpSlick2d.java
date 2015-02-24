@@ -1,8 +1,11 @@
 package uk.co.matdev.SIMOnline.slick2d;
 
 
+import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
 import uk.co.matdev.SIMOnline.core.GraphicsImp;
+
+import java.awt.Color;
 
 /**
  * Created by joeisaacs on 24/02/2015.
@@ -19,5 +22,32 @@ public class GraphicsImpSlick2d implements GraphicsImp {
     @Override
     public void drawRectangle(float x, float y, float width, float height) {
         mGraphics.drawRect(x,y,width,height);
+    }
+
+    @Override
+    public void drawLine(float xStart, float yStart, float xEnd, float yEnd) {
+        mGraphics.drawLine(xStart, yStart, xEnd, yEnd);
+    }
+
+    @Override
+    public void drawRoundedRectangle(float x, float y, float width, float height, int cornerRadius, int numberOfSegments) {
+        mGraphics.drawRoundRect(x,y,width,height,cornerRadius,numberOfSegments);
+    }
+
+    @Override
+    public void drawArc(float x1, float y1, float width, float height, int segments, float start, float end) {
+        mGraphics.drawArc(x1,y1,width,height,segments,start,end);
+    }
+
+    @Override
+    public void drawGradientLine(float x1, float y1, java.awt.Color colour1, float x2, float y2, java.awt.Color colour2) {
+        mGraphics.drawGradientLine(
+                x1,
+                y1,
+                new org.newdawn.slick.Color(colour1.getRed(), colour1.getGreen(), colour1.getBlue(), colour1.getAlpha()),
+                x2,
+                y2,
+                new org.newdawn.slick.Color(colour2.getRed(), colour2.getGreen(), colour2.getBlue(), colour2.getAlpha())
+        );
     }
 }
