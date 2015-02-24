@@ -24,6 +24,7 @@ public interface GraphicsImp {
      *
      * @param validRectangle
      * This is a rectangle in which the graphics should be drawn.
+     * @see Rectangle2d
      */
 
     void setValidRectangle(Rectangle2d validRectangle);
@@ -35,9 +36,17 @@ public interface GraphicsImp {
      * @param width The width of the rectangle
      * @param height The height of the rectangle
      * @param filled Whether the rectangle should be filled
+     *
      */
 
     void drawRectangle(float x, float y,float width, float height, boolean filled);
+
+    /**
+     *
+     * @param rect The rectangle to be drawn
+     * @param filled Whether the rectangle should be filled
+     * @see Rectangle2d
+     */
 
     void drawRectangle(Rectangle2d<Float> rect, boolean filled);
 
