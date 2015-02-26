@@ -5,22 +5,29 @@ package uk.co.matdev.SIMOnline.maths;
  */
 public class Rectangle2d<T> {
 
-    private T mLeftBottomX, mLeftBottomY, mHeight, mWidth;
+    private T mTopLeftX, mTopLeftY, mHeight, mWidth;
 
-    public T getLeftBottomX() {
-        return mLeftBottomX;
+    public Rectangle2d(T topLeftX, T topLeftY, T height, T width){
+        mTopLeftX = topLeftX;
+        mTopLeftY = topLeftY;
+        mHeight = height;
+        mWidth = width;
     }
 
-    public void setLeftBottomX(T leftBottomX) {
-        this.mLeftBottomX = mLeftBottomX;
+    public T getTopLeftX() {
+        return mTopLeftX;
     }
 
-    public T getLeftBottomY() {
-        return mLeftBottomY;
+    public void getTopLeftX(T leftBottomX) {
+        this.mTopLeftX = mTopLeftX;
     }
 
-    public void setLeftBottomY(T leftBottomY) {
-        this.mLeftBottomY = mLeftBottomY;
+    public T getTopLeftY() {
+        return mTopLeftY;
+    }
+
+    public void setTopLeftY(T leftBottomY) {
+        this.mTopLeftY = mTopLeftY;
     }
 
     public T getHeight() {

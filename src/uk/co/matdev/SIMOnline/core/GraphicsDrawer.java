@@ -12,9 +12,5 @@ public class GraphicsDrawer {
 
 
     //could added a method the check if a class is drawing outside of it's bounds.
-    GraphicsImp mImp;
 
-    GraphicsDrawer(GraphicsImp imp){
-        mImp = imp;
-    }
 }

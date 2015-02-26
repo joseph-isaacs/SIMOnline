@@ -15,9 +15,9 @@ public class GraphicsImpSlick2d implements GraphicsImp {
     Rectangle2d<Integer> mValidRectangle;
 
     //only makes sense to instantiate this class with a validRectangle.
-    GraphicsImpSlick2d(Graphics g, Rectangle2d<Integer> validRectangle){
-        setValidRectangle(validRectangle);
+    public GraphicsImpSlick2d(Graphics g, Rectangle2d<Integer> validRectangle){
         setGraphicsContext(g);
+        setValidRectangle(validRectangle);
     }
 
     /**
@@ -28,7 +28,12 @@ public class GraphicsImpSlick2d implements GraphicsImp {
     public void setGraphicsContext(Graphics g){
         mGraphics = g;
         if(mValidRectangle != null)
-            mGraphics.translate(mValidRectangle.getLeftBottomX(), mValidRectangle.getLeftBottomY());
+            mGraphics.translate(mValidRectangle.getTopLeftX(), mValidRectangle.getTopLeftY());
+    }
+
+    @Override
+    public Rectangle2d<Integer> setValidRectangle() {
+        return mValidRectangle;
     }
 
     public Graphics getGraphicsContext(){
@@ -41,13 +46,15 @@ public class GraphicsImpSlick2d implements GraphicsImp {
 
     @Override
     public void setValidRectangle(Rectangle2d validRectangle) {
+        if(validRectangle == null)
+            return;
         //will remove the old translation.
         if(mValidRectangle != null)
-            mGraphics.translate(-mValidRectangle.getLeftBottomX(), -mValidRectangle.getLeftBottomY());
+            mGraphics.translate(-mValidRectangle.getTopLeftX(), -mValidRectangle.getTopLeftY());
         mValidRectangle = validRectangle;
 
         //will apply the new translation.
-        mGraphics.translate(mValidRectangle.getLeftBottomX(), mValidRectangle.getLeftBottomY());
+        mGraphics.translate(mValidRectangle.getTopLeftX(), mValidRectangle.getTopLeftY());
     }
 
     @Override
@@ -61,7 +68,7 @@ public class GraphicsImpSlick2d implements GraphicsImp {
 
     @Override
     public void drawRectangle(Rectangle2d<Float> rect, boolean filled) {
-        drawRectangle(rect.getLeftBottomX(), rect.getLeftBottomY(), rect.getWidth(), rect.getHeight(), filled);
+        drawRectangle(rect.getTopLeftX(), rect.getTopLeftY(), rect.getWidth(), rect.getHeight(), filled);
     }
 
 
@@ -81,14 +88,19 @@ public class GraphicsImpSlick2d implements GraphicsImp {
     }
 
     @Override
-    public void drawGradientLine(float x1, float y1, java.awt.Color colour1, float x2, float y2, java.awt.Color colour2) {
+    public void drawGradientLine(float x1, float y1, java.awt.Color color1, float x2, float y2, java.awt.Color color2) {
         mGraphics.drawGradientLine(
                 x1,
                 y1,
-                new org.newdawn.slick.Color(colour1.getRed(), colour1.getGreen(), colour1.getBlue(), colour1.getAlpha()),
+                new org.newdawn.slick.Color(color1.getRed(), color1.getGreen(), color1.getBlue(), color1.getAlpha()),
                 x2,
                 y2,
-                new org.newdawn.slick.Color(colour2.getRed(), colour2.getGreen(), colour2.getBlue(), colour2.getAlpha())
+                new org.newdawn.slick.Color(color2.getRed(), color2.getGreen(), color2.getBlue(), color2.getAlpha())
         );
+    }
+
+    @Override
+    public void setColor(java.awt.Color c) {
+        mGraphics.setColor(new org.newdawn.slick.Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()));
     }
 }

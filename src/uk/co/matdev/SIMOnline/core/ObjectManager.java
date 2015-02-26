@@ -8,20 +8,22 @@ import java.util.List;
 /**
  * Created by joeisaacs on 23/02/2015.
  */
-public class ObjectManager {
+public class ObjectManager implements SIMObject{
     private List<SIMObject> objects = new LinkedList<>();
 
     public ObjectManager(){}
 
-    public void update(){
-        objects.forEach(SIMObject::doUpdate);
+    public void addObject(SIMObject o){
+        objects.add(o);
     }
 
-    public void render(Graphics g){
+    @Override
+    public void draw(GraphicsImp g) {
         objects.forEach((object) -> object.draw(g));
     }
 
-    public void addObject(SIMObject o){
-        objects.add(o);
+    @Override
+    public void doUpdate() {
+        objects.forEach(SIMObject::doUpdate);
     }
 }

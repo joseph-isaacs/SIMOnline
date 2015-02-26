@@ -27,7 +27,9 @@ public interface GraphicsImp {
      * @see Rectangle2d
      */
 
-    void setValidRectangle(Rectangle2d validRectangle);
+    void setValidRectangle(Rectangle2d<Integer> validRectangle);
+
+    Rectangle2d<Integer> setValidRectangle();
 
     /**
      *
@@ -57,4 +59,6 @@ public interface GraphicsImp {
     void drawArc(float x1, float y1, float width, float height, int segments, float start, float end);
 
     void drawGradientLine(float x1, float y1, Color Color1, float x2, float y2, Color Color2);
+
+    void setColor(Color c);
 }
