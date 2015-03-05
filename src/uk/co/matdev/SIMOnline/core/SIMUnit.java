@@ -23,18 +23,18 @@ public abstract class SIMUnit implements SIMObject{
 
     /**
      *
-     * @param u
+     * @param unit
      * @return Will return the velocity vector of how to move after a collision.
      */
-    public Vector2d<Integer> collision(SIMUnit u){
-        if (u instanceof InanimateUnit){
-            return updateTurningVelocity(); //Some random side to side vector
+    public Vector2d<Integer> collision(SIMUnit unit){
+        if (unit instanceof InanimateUnit){
+            return updateTurningVelocity(); //Some side to side motion
         }else{
             return null;
         }
     }
 
-    public Vector2d<Integer> updateTurningVelocity(){
+    protected Vector2d<Integer> updateTurningVelocity(){
         Vector2d<Integer> v = computeTurningVelocity(mTargetVelocity, mVelocity);
         if (v.equals(new Vector2d<>(0,0))){
             v.setXY(mTargetVelocity.getX(), mTargetVelocity.getY());
