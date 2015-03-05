@@ -45,16 +45,19 @@ public class GraphicsImpSlick2d implements GraphicsImp {
     }
 
     @Override
-    public void setValidRectangle(Rectangle2d validRectangle) {
+    public void setValidRectangle(Rectangle2d<Integer> validRectangle) {
         if(validRectangle == null)
             return;
         //will remove the old translation.
         if(mValidRectangle != null)
-            mGraphics.translate(-mValidRectangle.getTopLeftX(), -mValidRectangle.getTopLeftY());
+            mGraphics.translate(validRectangle.getTopLeftX()-mValidRectangle.getTopLeftX(),validRectangle.getTopLeftY() -mValidRectangle.getTopLeftY());
+        else{
+            mGraphics.translate(validRectangle.getTopLeftX(), validRectangle.getTopLeftY());
+        }
         mValidRectangle = validRectangle;
 
         //will apply the new translation.
-        mGraphics.translate(mValidRectangle.getTopLeftX(), mValidRectangle.getTopLeftY());
+
     }
 
     @Override
@@ -102,5 +105,10 @@ public class GraphicsImpSlick2d implements GraphicsImp {
     @Override
     public void setColor(java.awt.Color c) {
         mGraphics.setColor(new org.newdawn.slick.Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()));
+    }
+
+    @Override
+    public void drawText(String value, float x, float y ){
+        mGraphics.drawString(value, x, y);
     }
 }

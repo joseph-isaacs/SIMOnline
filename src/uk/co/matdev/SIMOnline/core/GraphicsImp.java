@@ -61,4 +61,6 @@ public interface GraphicsImp {
     void drawGradientLine(float x1, float y1, Color Color1, float x2, float y2, Color Color2);
 
     void setColor(Color c);
+
+    void drawText(String value, float x, float y );
 }

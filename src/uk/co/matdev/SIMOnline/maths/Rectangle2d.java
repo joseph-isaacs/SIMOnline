@@ -1,5 +1,7 @@
 package uk.co.matdev.SIMOnline.maths;
 
+import com.sun.istack.internal.NotNull;
+
 /**
  * Created by joeisaacs on 24/02/2015.
  */
@@ -13,6 +15,8 @@ public class Rectangle2d<T> {
         mHeight = height;
         mWidth = width;
     }
+
+
 
     public T getTopLeftX() {
         return mTopLeftX;
