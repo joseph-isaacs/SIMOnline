@@ -10,7 +10,7 @@ import uk.co.matdev.SIMOnline.maths.Vector2d;
 public class BattleManager implements SIMObject {
 
     BattlefieldManager mWorld = new BattlefieldManager();
-    BattlefieldManager mWorld2 = new BattlefieldManager(new Vector2d<>(800, 20));
+   // BattlefieldManager mWorld2 = new BattlefieldManager(new Vector2d<>(800, 20));
 
     @Override
     public void draw(SIMGraphics g) {

@@ -3,10 +3,17 @@ package uk.co.matdev.SIMOnline.core;
 import org.newdawn.slick.Color;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
+import static java.lang.System.identityHashCode;
+
 /**
  * Created by Matt on 05/03/2015.
  */
 public class MilitiaRussianUnit extends RussianUnit {
+
+    MilitiaRussianUnit(Vector2d<Integer> targetVelocity){
+        mTargetVelocity = new Vector2d<Integer>(targetVelocity);
+        mVelocity = new Vector2d<Integer>(targetVelocity);
+    }
 
     @Override
     public Vector2d<Integer> collision(SIMUnit unit){
@@ -36,4 +43,10 @@ public class MilitiaRussianUnit extends RussianUnit {
     public void doUpdate() {
 
     }
+
+    @Override
+    public int compareTo(SIMUnit o) {
+        return identityHashCode(this ) - identityHashCode(o);
+    }
+
 }

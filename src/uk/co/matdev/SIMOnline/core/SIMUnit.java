@@ -6,7 +6,7 @@ import uk.co.matdev.SIMOnline.maths.Vector2d;
 /**
  * Created by joeisaacs on 05/03/2015.
  */
-public abstract class SIMUnit implements SIMObject{
+public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
 
     protected Vector2d<Integer> mVelocity;
     protected Vector2d<Integer> mTargetVelocity;
