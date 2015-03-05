@@ -67,7 +67,6 @@ public class BattlefieldManager implements SIMObject{
                 if(!moveUnit(unit, x, y, newXPos, newYPos))
                     return;
             }
-
         }
     }
 
