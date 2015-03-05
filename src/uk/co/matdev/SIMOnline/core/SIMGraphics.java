@@ -4,8 +4,6 @@ package uk.co.matdev.SIMOnline.core;
 import org.newdawn.slick.Graphics;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 
-import java.awt.Color;
-
 /**
  * Created by joeisaacs on 24/02/2015.
  */
@@ -21,7 +19,7 @@ public class SIMGraphics {
 
     /**
      *
-     * @param g The
+     * @param g The graphics context
      * @see <a href="http://slick.ninjacave.com/javadoc/">Graphics</a>
      */
     public void setGraphicsContext(Graphics g){
@@ -54,6 +52,5 @@ public class SIMGraphics {
         mValidRectangle = validRectangle;
 
         //will apply the new translation.
-
     }
 }
