@@ -16,8 +16,6 @@ public class BattleManager implements SIMObject {
     public void draw(SIMGraphics g) {
         g.setValidRectangle(new Rectangle2d<>(50,50,500,500));
         mWorld.draw(g);
-        g.setValidRectangle(new Rectangle2d<>(500, 50, 950, 950));
-        mWorld2.draw(g);
     }
 
     @Override
