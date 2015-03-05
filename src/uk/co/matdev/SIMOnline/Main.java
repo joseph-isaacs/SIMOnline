@@ -2,8 +2,11 @@ package uk.co.matdev.SIMOnline;
 
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.*;
+import uk.co.matdev.SIMOnline.core.GraphicsImp;
 import uk.co.matdev.SIMOnline.core.ObjectManager;
 import uk.co.matdev.SIMOnline.core.BattleManager;
+import uk.co.matdev.SIMOnline.maths.Rectangle2d;
+import uk.co.matdev.SIMOnline.slick2d.GraphicsImpSlick2d;
 
 public class Main extends BasicGame {
     public static int WIDTH = 1000;
@@ -12,6 +15,7 @@ public class Main extends BasicGame {
     public static int MAX_FRAMERATE = 60;
 
     private ObjectManager oM;
+
 
     public static final String TITLE = "Slimes Invade Moscow";
 
@@ -27,12 +31,13 @@ public class Main extends BasicGame {
 
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
-
+        oM.doUpdate();
     }
 
     @Override
     public void render(GameContainer gameContainer, org.newdawn.slick.Graphics graphics) throws SlickException {
-        oM.render(graphics);
+        GraphicsImp drawer = new GraphicsImpSlick2d(graphics, new Rectangle2d<Integer>(50,50, WIDTH-100, HEIGHT-100));
+        oM.draw(drawer);
     }
 
     public static void main(String args[]) throws SlickException {
