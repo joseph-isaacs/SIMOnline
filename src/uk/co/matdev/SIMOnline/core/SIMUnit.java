@@ -19,7 +19,12 @@ public abstract class SIMUnit implements SIMObject{
     int mDefence;
     int mDodgeChance;
 
-    public abstract void collision(SIMUnit u);
+    /**
+     *
+     * @param u
+     * @return Will return the velocity vector of how to move after a collision.
+     */
+    public abstract Vector2d<Integer> collision(SIMUnit u);
 
     public abstract void die();
 }
