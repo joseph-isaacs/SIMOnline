@@ -1,5 +1,6 @@
 package uk.co.matdev.SIMOnline.core;
 
+import uk.co.matdev.SIMOnline.maths.SIMRandom;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 /**
@@ -7,18 +8,18 @@ import uk.co.matdev.SIMOnline.maths.Vector2d;
  */
 public abstract class SIMUnit implements SIMObject{
 
-    Vector2d<Integer> Velocity;
-    Vector2d<Integer> TargetVelocity;
+    protected Vector2d<Integer> mVelocity;
+    protected Vector2d<Integer> mTargetVelocity;
 
-    int MaxDamage;
-    int MinDamage;
-    int CritMultiplyer;
-    int CritChance;
-    int Haste;
+    protected int mMaxDamage;
+    protected int mMinDamage;
+    protected int mCritMultiplyer;
+    protected int mCritChance;
+    protected int mHaste;
 
-    int Health;
-    int Defence;
-    int DodgeChance;
+    protected int mHealth;
+    protected int mDefence;
+    protected int mDodgeChance;
 
     /**
      *
@@ -27,92 +28,115 @@ public abstract class SIMUnit implements SIMObject{
      */
     public Vector2d<Integer> collision(SIMUnit u){
         if (u instanceof InanimateUnit){
-            return new Vector2d<>(0,0); //Some random side to side vector
+            return updateTurningVelocity(); //Some random side to side vector
         }else{
             return null;
         }
+    }
+
+    public Vector2d<Integer> updateTurningVelocity(){
+        Vector2d<Integer> v = computeTurningVelocity(mTargetVelocity, mVelocity);
+        if (v.equals(new Vector2d<>(0,0))){
+            v.setXY(mTargetVelocity.getX(), mTargetVelocity.getY());
+        }
+        mVelocity = new Vector2d<>(v);
+
+        return new Vector2d<Integer>(mVelocity);
+    }
+
+    public static Vector2d<Integer> computeTurningVelocity(Vector2d<Integer> TargetVelocity, Vector2d<Integer> CurrentVelocity){
+        if (TargetVelocity.getX().equals(CurrentVelocity.getX()) && TargetVelocity.getY().equals(CurrentVelocity.getY())){
+            //Current and Target Velocities are equal, so choose a random sideways direction
+            if (SIMRandom.range(0,1) == 0){
+                return new Vector2d<>(-TargetVelocity.getY(),TargetVelocity.getX());
+            }else{
+                return new Vector2d<>(TargetVelocity.getY(),-TargetVelocity.getX());
+            }
+        }
+
+        return new Vector2d<>(-CurrentVelocity.getX(),-CurrentVelocity.getY());
     }
 
     public abstract void die();
 
 
     public Vector2d<Integer> getVelocity() {
-        return Velocity;
+        return mVelocity;
     }
 
     public void setVelocity(Vector2d<Integer> velocity) {
-        Velocity = velocity;
+        mVelocity = velocity;
     }
 
     public Vector2d<Integer> getTargetVelocity() {
-        return TargetVelocity;
+        return mTargetVelocity;
     }
 
     public void setTargetVelocity(Vector2d<Integer> targetVelocity) {
-        TargetVelocity = targetVelocity;
+        mTargetVelocity = targetVelocity;
     }
 
     public int getMaxDamage() {
-        return MaxDamage;
+        return mMaxDamage;
     }
 
     public void setMaxDamage(int maxDamage) {
-        MaxDamage = maxDamage;
+        mMaxDamage = maxDamage;
     }
 
     public int getMinDamage() {
-        return MinDamage;
+        return mMinDamage;
     }
 
     public void setMinDamage(int minDamage) {
-        MinDamage = minDamage;
+        mMinDamage = minDamage;
     }
 
     public int getCritMultiplyer() {
-        return CritMultiplyer;
+        return mCritMultiplyer;
     }
 
     public void setCritMultiplyer(int critMultiplyer) {
-        CritMultiplyer = critMultiplyer;
+        mCritMultiplyer = critMultiplyer;
     }
 
     public int getCritChance() {
-        return CritChance;
+        return mCritChance;
     }
 
     public void setCritChance(int critChance) {
-        CritChance = critChance;
+        mCritChance = critChance;
     }
 
     public int getHaste() {
-        return Haste;
+        return mHaste;
     }
 
     public void setHaste(int haste) {
-        Haste = haste;
+        mHaste = haste;
     }
 
     public int getHealth() {
-        return Health;
+        return mHealth;
     }
 
     public void setHealth(int health) {
-        Health = health;
+        mHealth = health;
     }
 
     public int getDefence() {
-        return Defence;
+        return mDefence;
     }
 
     public void setDefence(int defence) {
-        Defence = defence;
+        mDefence = defence;
     }
 
     public int getDodgeChance() {
-        return DodgeChance;
+        return mDodgeChance;
     }
 
     public void setDodgeChance(int dodgeChance) {
-        DodgeChance = dodgeChance;
+        mDodgeChance = dodgeChance;
     }
 }
