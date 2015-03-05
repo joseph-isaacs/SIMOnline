@@ -3,13 +3,18 @@ package uk.co.matdev.SIMOnline.maths;
 /**
  * Created by joeisaacs on 23/02/2015.
  */
-public class Vector2d<T>{
+public class Vector2d<T> implements Cloneable{
     T mX;
     T mY;
 
     public Vector2d(T x, T y){
         mX = x;
         mY = y;
+    }
+
+    public Vector2d(Vector2d<T> v){
+        mX = v.getX();
+        mY = v.getY();
     }
 
     public T getX(){return mX;}
@@ -23,4 +28,6 @@ public class Vector2d<T>{
     public boolean equals(Vector2d o) {
         return mX.equals(o.mX) && mY.equals(o.mY);
     }
+
+
 }
