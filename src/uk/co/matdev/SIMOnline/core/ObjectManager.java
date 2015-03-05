@@ -18,7 +18,7 @@ public class ObjectManager implements SIMObject{
     }
 
     @Override
-    public void draw(GraphicsImp g) {
+    public void draw(SIMGraphics g) {
         objects.forEach((object) -> object.draw(g));
     }
 
