@@ -26,16 +26,16 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
      * @param unit
      * @return Will return the velocity vector of how to move after a collision.
      */
-    public Vector2d<Integer> collision(SIMUnit unit){
+    public Vector2d<Integer> collision(SIMUnit unit, boolean frontCollision){
         if (unit instanceof InanimateUnit){
-            return updateTurningVelocity(); //Some side to side motion
+            return updateTurningVelocity(frontCollision); //Some side to side motion
         }else{
             return null;
         }
     }
 
-    protected Vector2d<Integer> updateTurningVelocity(){
-        Vector2d<Integer> v = computeTurningVelocity(mTargetVelocity, mVelocity);
+    protected Vector2d<Integer> updateTurningVelocity(boolean frontCollision){
+        Vector2d<Integer> v = computeTurningVelocity(mTargetVelocity, mVelocity, frontCollision);
         if (v.equals(new Vector2d<>(0,0))){
             v.setXY(mTargetVelocity.getX(), mTargetVelocity.getY());
         }
@@ -44,7 +44,12 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         return new Vector2d<Integer>(mVelocity);
     }
 
-    public static Vector2d<Integer> computeTurningVelocity(Vector2d<Integer> TargetVelocity, Vector2d<Integer> CurrentVelocity){
+    public void turnArround(){
+        mVelocity = new Vector2d<>(-mVelocity.getX(),-mVelocity.getY());
+    }
+
+
+    public static Vector2d<Integer> computeTurningVelocity(Vector2d<Integer> TargetVelocity, Vector2d<Integer> CurrentVelocity, boolean frontCollision){
         if (TargetVelocity.getX().equals(CurrentVelocity.getX()) && TargetVelocity.getY().equals(CurrentVelocity.getY())){
             //Current and Target Velocities are equal, so choose a random sideways direction
             if (SIMRandom.range(0,1) == 0){
@@ -53,7 +58,8 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
                 return new Vector2d<>(TargetVelocity.getY(),-TargetVelocity.getX());
             }
         }
-
+        if(frontCollision)
+            return new Vector2d<>(CurrentVelocity);
         return new Vector2d<>(-CurrentVelocity.getX(),-CurrentVelocity.getY());
     }
 

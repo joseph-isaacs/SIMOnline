@@ -28,9 +28,16 @@ public class Main extends BasicGame {
         oM.addObject(new BattleManager());
     }
 
+
+    private int counter = 0;
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
-        oM.doUpdate();
+        counter += i;
+       if (counter >= 200){
+            counter = 0;
+            oM.doUpdate();
+        }
+       // oM.doUpdate();
     }
 
     @Override

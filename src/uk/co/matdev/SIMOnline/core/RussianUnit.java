@@ -9,15 +9,15 @@ public abstract class RussianUnit extends SIMUnit{
     //All Russian Type Units inherit this class
 
     @Override
-    public Vector2d<Integer> collision(SIMUnit unit){
-        Vector2d v = super.collision(unit);
+    public Vector2d<Integer> collision(SIMUnit unit, boolean frontCollision){
+        Vector2d v = super.collision(unit, frontCollision);
         if (v != null){
             return v;
         }
 
         //Assert: not colliding with inanimateUnit
         if (unit instanceof RussianUnit){
-            return updateTurningVelocity();
+            return updateTurningVelocity(frontCollision);
         }else{
             return null;
         }

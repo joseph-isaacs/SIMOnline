@@ -16,8 +16,8 @@ public class MilitiaRussianUnit extends RussianUnit {
     }
 
     @Override
-    public Vector2d<Integer> collision(SIMUnit unit){
-        Vector2d v = super.collision(unit);
+    public Vector2d<Integer> collision(SIMUnit unit, boolean frontCollision){
+        Vector2d v = super.collision(unit, frontCollision);
         if (v != null){
             return v;
         }
