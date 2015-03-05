@@ -44,13 +44,13 @@ public class BattlefieldManager implements SIMObject{
             for (int y = 0; y != mUnitPositions[x].length; y++) {
                 SIMUnit unit = mUnitPositions[x][y];
                 if(unit != null){
-                    updateHelper(unit, x, y, false);
+                    updateHelper(unit, x, y);
                 }
             }
         }
     }
 
-    private void updateHelper(SIMUnit unit, int x, int y, boolean hitOnce){
+    private void updateHelper(SIMUnit unit, int x, int y){
 
         int newXPos = x + unit.getTargetVelocity().getX();
         int newYPos = y + unit.getTargetVelocity().getY();
@@ -61,23 +61,29 @@ public class BattlefieldManager implements SIMObject{
             newXPos = x + afterVelocity.getX();
             newYPos = y + afterVelocity.getY();
             if(!moveUnit(unit, x,y,newXPos,newYPos)){
+                otherUnit = mUnitPositions[newXPos][newYPos];
                 Vector2d<Integer> afterVelocity2 = unit.collision(otherUnit);
                 newXPos = x + afterVelocity2.getX();
                 newYPos = y + afterVelocity2.getY();
-                if(!moveUnit(unit, x, y, newXPos, newYPos))
+                if(!moveUnit(unit, x, y, newXPos, newYPos)) {
+                    otherUnit = mUnitPositions[newXPos][newYPos];
+                    unit.collision(otherUnit);
                     return;
+                }
             }
         }
+        unit.setVelocity(new Vector2d<Integer>(unit.getTargetVelocity()));
     }
 
     private boolean moveUnit(SIMUnit unit, int x, int y, int newXPos, int newYPos){
-        if(mUnitPositions[newXPos][newYPos] == null) {
-            mUnitPositions[newXPos][newYPos] = unit;
-            mUnitPositions[x][y] = null;
+         if(x == newXPos && y == newYPos)
             return true;
+        else if(mUnitPositions[newXPos][newYPos] == null) {
+             mUnitPositions[newXPos][newYPos] = unit;
+             mUnitPositions[x][y] = null;
+
+             return true;
         }
-        else if(mUnitPositions[newXPos][newYPos].equals(unit))
-            return true;
         return false;
     }
 }
