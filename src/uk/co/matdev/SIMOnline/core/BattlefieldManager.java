@@ -2,6 +2,7 @@ package uk.co.matdev.SIMOnline.core;
 
 import org.newdawn.slick.Color;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
+import uk.co.matdev.SIMOnline.maths.SIMRandom;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 
@@ -92,29 +93,40 @@ public class BattlefieldManager implements SIMObject{
         mUnitPositions[5][17] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[5][18] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[5][19] = new BattlefieldUnit(new BlockInanimateUnit());
-
-
-
-
         mUnitPositions[15][1] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[15][2] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[15][3] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[15][4] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[15][5] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[14][5] = new BattlefieldUnit(new BlockInanimateUnit());
-
         mUnitPositions[15][9] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[16][10] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[15][11] = new BattlefieldUnit(new BlockInanimateUnit());
         mUnitPositions[15][11] = new BattlefieldUnit(new BlockInanimateUnit());
 
+
+        for (int j = 0; j < 5; j++) {
+            for (int i = 0; i < 20; i++) {
+                mUnitPositions[70+j][2+i+j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(-1,0)));
+            }
+        }
+
+        int count = 0;
+        while (count < 1000) {
+            int x = SIMRandom.range(0,mWorldSize.getX() - 1);
+            int y = SIMRandom.range(0,mWorldSize.getY() - 1);
+            if (mUnitPositions[x][y] == null){
+                mUnitPositions[x][y] = new BattlefieldUnit(new BlockInanimateUnit());
+                count++;
+            }
+        }
     }
 
 
     @Override
     public void draw(SIMGraphics g) {
         Rectangle2d<Integer> tmpRec = g.getValidRectangle();
-        g.getGraphics().setColor(Color.green);
+        g.getGraphics().setColor(Color.lightGray);
         for (int i = 0; i < mWorldSize.getX(); i++) {
             for(int j = 0; j < mWorldSize.getY(); j++){
                 g.getGraphics().fillRect(i * mTileSize + i, j * mTileSize + j, mTileSize, mTileSize);

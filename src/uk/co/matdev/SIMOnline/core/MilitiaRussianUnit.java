@@ -35,7 +35,18 @@ public class MilitiaRussianUnit extends RussianUnit {
 
     @Override
     public void draw(SIMGraphics g) {
-        g.getGraphics().setColor(Color.red);
+        if (mTargetVelocity.getX() == 1){
+            g.getGraphics().setColor(Color.red);
+        }else if(mTargetVelocity.getX() == -1){
+            g.getGraphics().setColor(Color.blue);
+        }else{
+            if (mTargetVelocity.getY() == -1){
+                g.getGraphics().setColor(Color.black);
+            }else{
+                g.getGraphics().setColor(new Color(255,100,0));
+            }
+        }
+
         g.getGraphics().fillOval(0, 0, g.getValidRectangle().getWidth(), g.getValidRectangle().getHeight());
     }
 

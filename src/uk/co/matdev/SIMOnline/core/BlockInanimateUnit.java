@@ -19,7 +19,7 @@ public class BlockInanimateUnit extends InanimateUnit{
 
     @Override
     public void draw(SIMGraphics g) {
-        g.getGraphics().setColor(Color.gray);
+        g.getGraphics().setColor(Color.darkGray);
         g.getGraphics().fillRect(0,0,g.getValidRectangle().getWidth(),g.getValidRectangle().getHeight());
     }
 
