@@ -97,15 +97,18 @@ public class BattlefieldManager implements SIMObject {
             }
         }
 
-        int count = 0;
-        while (count < 300) {
-            int x = SIMRandom.range(0, mWorldSize.getX() - 1);
-            int y = SIMRandom.range(0,mWorldSize.getY() - 1);
-            if (mUnitPositions[x][y] == null){
-                mUnitPositions[x][y] = new BattlefieldUnit(new BlockInanimateUnit());
-                count++;
-            }
-        }
+//        mUnitPositions[2][10] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
+//        mUnitPositions[11][10] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
+
+//        int count = 0;
+//        while (count < 300) {
+//            int x = SIMRandom.range(0, mWorldSize.getX() - 1);
+//            int y = SIMRandom.range(0,mWorldSize.getY() - 1);
+//            if (mUnitPositions[x][y] == null){
+//                mUnitPositions[x][y] = new BattlefieldUnit(new BlockInanimateUnit());
+//                count++;
+//            }
+//        }
     }
 
 
@@ -151,6 +154,9 @@ public class BattlefieldManager implements SIMObject {
             return false;
         return true;
     }
+    private boolean checkGridPosition(Vector2d<Integer> position){
+        return checkGridPosition(position.getX(),position.getY());
+    }
 
     private void updateHelper(BattlefieldUnit battleUnit, int x, int y){
 
@@ -172,7 +178,11 @@ public class BattlefieldManager implements SIMObject {
             battleUnit.unit.setVelocity(new Vector2d<Integer>(battleUnit.unit.getTargetVelocity()));
         }
         else{
-            Vector2d<Integer> afterVelocity = battleUnit.unit.collision(otherUnit.unit, true);
+            CollisionReport result = battleUnit.unit.collision(otherUnit.unit, true);
+            if (!handleDeath(result,new Vector2d<Integer>(x,y),new Vector2d<Integer>(newXPos,newYPos))){
+                return;
+            }
+            Vector2d<Integer> afterVelocity = result.getFinalVelocity();
             newXPos = x + afterVelocity.getX();
             newYPos = y + afterVelocity.getY();
             if(!checkGridPosition(newXPos, newYPos)) {
@@ -181,16 +191,47 @@ public class BattlefieldManager implements SIMObject {
             }
             if(!moveUnit(battleUnit, x,y,newXPos,newYPos)){
                 otherUnit = mUnitPositions[newXPos][newYPos];
-                Vector2d<Integer> afterVelocity2 = battleUnit.unit.collision(otherUnit.unit, false);
+                CollisionReport result2 = battleUnit.unit.collision(otherUnit.unit, false);
+                if (!handleDeath(result2,new Vector2d<Integer>(x,y),new Vector2d<Integer>(newXPos,newYPos))){
+                    return;
+                }
+                Vector2d<Integer> afterVelocity2 = result2.getFinalVelocity();
                 newXPos = x + afterVelocity2.getX();
                 newYPos = y + afterVelocity2.getY();
                 if(!checkGridPosition(newXPos, newYPos))
                     return;
                 if(!moveUnit(battleUnit, x, y, newXPos, newYPos)) {
                     otherUnit = mUnitPositions[newXPos][newYPos];
-                    battleUnit.unit.collision(otherUnit.unit, false);
+                    CollisionReport result3 = battleUnit.unit.collision(otherUnit.unit, false);
+                    handleDeath(result3,new Vector2d<Integer>(x,y),new Vector2d<Integer>(newXPos,newYPos));
                     return;
                 }
+            }
+        }
+    }
+
+    private boolean handleDeath(CollisionReport report, Vector2d<Integer> colliderPos, Vector2d<Integer> collidedPos){
+        //Returns true if collider stays alive, or false if collider dies
+        switch (report.getDeaths()){
+            case NONE: return true;
+            case COLLIDER:
+                kill(colliderPos);
+            case COLLIDED:
+                kill(collidedPos);
+                return true;
+            case BOTH:
+                kill(colliderPos);
+                kill(collidedPos);
+        }
+        return false;
+    }
+
+    private void kill(Vector2d<Integer> position){
+        if (checkGridPosition(position)){
+            BattlefieldUnit battleUnit = mUnitPositions[position.getX()][position.getY()];
+            if (battleUnit != null){
+                battleUnit.unit.die();
+                mUnitPositions[position.getX()][position.getY()] = null;
             }
         }
     }

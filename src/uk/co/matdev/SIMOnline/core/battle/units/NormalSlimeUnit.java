@@ -2,6 +2,8 @@ package uk.co.matdev.SIMOnline.core.battle.units;
 
 import org.newdawn.slick.Color;
 import uk.co.matdev.SIMOnline.core.SIMGraphics;
+import uk.co.matdev.SIMOnline.core.battle.CollisionReport;
+import uk.co.matdev.SIMOnline.core.battle.eDeaths;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 import static java.lang.System.identityHashCode;
@@ -20,21 +22,8 @@ public class NormalSlimeUnit extends SlimeUnit {
     }
 
     @Override
-    public Vector2d<Integer> collision(SIMUnit unit, boolean frontCollision){
-        Vector2d v = super.collision(unit, frontCollision);
-        if (v != null){
-            return v;
-        }
-
-        //Assert: not colliding with inanimateUnit or SlimeUnit
-        //Therefore, definitely something to fight
-        //TODO: Add code for fighting
-        return new Vector2d<Integer>(0,0);
-    }
-
-    @Override
     public void die() {
-
+        System.out.println("green dies");
     }
 
     @Override

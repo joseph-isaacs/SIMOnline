@@ -1,5 +1,7 @@
 package uk.co.matdev.SIMOnline.core.battle.units;
 
+import uk.co.matdev.SIMOnline.core.battle.CollisionReport;
+import uk.co.matdev.SIMOnline.core.battle.eDeaths;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 /**
@@ -9,17 +11,25 @@ public abstract class SlimeUnit extends SIMUnit{
     //All slime units inherit this class
 
     @Override
-    public Vector2d<Integer> collision(SIMUnit unit, boolean frontCollision){
-        Vector2d v = super.collision(unit, frontCollision);
-        if (v != null){
-            return v;
+    public CollisionReport collision(SIMUnit unit, boolean frontCollision){
+        CollisionReport r = super.collision(unit, frontCollision);
+        if (r != null){
+            return r;
         }
 
         //Assert: not colliding with inanimateUnit
         if (unit instanceof SlimeUnit){
-            return updateTurningVelocity(frontCollision);
+            return new CollisionReport(updateTurningVelocity(frontCollision), eDeaths.NONE);
         }else{
-            return null;
+            //Assert: not colliding with inanimateUnit or SlimeUnit
+            //Therefore, definitely something to fight
+            if (fighting){
+                fighting = false;
+                return new CollisionReport(new Vector2d<Integer>(0,0), fight(unit));
+            }else{
+                fighting = true;
+                return new CollisionReport(new Vector2d<Integer>(0,0), eDeaths.NONE);
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ public class Main extends BasicGame {
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
         counter += i;
-       if (counter >= 200){
+       if (counter >= 1000){
             counter = 0;
             oM.doUpdate();
         }

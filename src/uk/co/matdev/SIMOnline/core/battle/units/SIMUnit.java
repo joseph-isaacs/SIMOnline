@@ -1,6 +1,8 @@
 package uk.co.matdev.SIMOnline.core.battle.units;
 
 import uk.co.matdev.SIMOnline.core.SIMObject;
+import uk.co.matdev.SIMOnline.core.battle.CollisionReport;
+import uk.co.matdev.SIMOnline.core.battle.eDeaths;
 import uk.co.matdev.SIMOnline.maths.SIMRandom;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
@@ -22,14 +24,16 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
     protected int mDefence;
     protected int mDodgeChance;
 
+    protected boolean fighting = false;
+
     /**
      *
      * @param unit
      * @return Will return the velocity vector of how to move after a collision.
      */
-    public Vector2d<Integer> collision(SIMUnit unit, boolean frontCollision){
+    public CollisionReport collision(SIMUnit unit, boolean frontCollision){
         if (unit instanceof InanimateUnit){
-            return updateTurningVelocity(frontCollision); //Some side to side motion
+            return new CollisionReport(updateTurningVelocity(frontCollision), eDeaths.NONE); //Some side to side motion
         }else{
             return null;
         }
@@ -60,7 +64,6 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         mVelocity = new Vector2d<>(-mVelocity.getX(),-mVelocity.getY());
     }
 
-
     public static Vector2d<Integer> computeTurningVelocity(Vector2d<Integer> TargetVelocity, Vector2d<Integer> CurrentVelocity, boolean frontCollision){
         if (TargetVelocity.getX().equals(CurrentVelocity.getX()) && TargetVelocity.getY().equals(CurrentVelocity.getY())){
             //Current and Target Velocities are equal, so choose a random sideways direction
@@ -77,6 +80,11 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
 
     public abstract void die();
 
+    public eDeaths fight(SIMUnit enemy){
+        //Makes no unit type check (should never need to)
+        //Leaf unit type override this if they need special fight code
+        return eDeaths.COLLIDED;
+    }
 
     public Vector2d<Integer> getVelocity() {
         return mVelocity;
