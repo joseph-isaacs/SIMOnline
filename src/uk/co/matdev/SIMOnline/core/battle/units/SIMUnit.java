@@ -179,20 +179,13 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
 
     protected void drawHealthBar(SIMGraphics g){
         //Calculate length of bar in pixels
-
-        //Draw white background
-        //g.getGraphics().setColor(new Color(255,255,255,75));
-//        g.getGraphics().drawLine(0,0,g.getValidRectangle().getWidth() - 1,0);
-//        g.getGraphics().drawLine(0,1,g.getValidRectangle().getWidth() - 1,1);
-//        g.getGraphics().drawLine(0,2,g.getValidRectangle().getWidth() - 1,2);
-//        g.getGraphics().drawLine(0,3,g.getValidRectangle().getWidth() - 1,3);
-        //g.getGraphics().fillRect(0,0,g.getValidRectangle().getWidth(),g.getValidRectangle().getHeight());
-        //Draw red health fill
-        g.getGraphics().setColor(new Color(0,0,0,75));
         int a = (int) Math.ceil((float) getHealth() / (float) getMaxHealth() * (float) (g.getValidRectangle().getWidth() - 2));
-//        g.getGraphics().drawLine(0,1,a,1);
-//        g.getGraphics().drawLine(0,2,a,2);
-        g.getGraphics().fillRect(1,1,a,g.getValidRectangle().getHeight() - 2);
+        //Draw white background
+        g.getGraphics().setColor(Color.white);
+        g.getGraphics().fillRect(0,g.getValidRectangle().getHeight()/2-2,g.getValidRectangle().getWidth(),4);
+        //Draw red health fill
+        g.getGraphics().setColor(Color.red);
+        g.getGraphics().fillRect(1,g.getValidRectangle().getHeight()/2-1,a,2);
     }
 
     public void setVelocity(Vector2d<Integer> velocity) {

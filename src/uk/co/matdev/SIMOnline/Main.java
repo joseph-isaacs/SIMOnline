@@ -8,9 +8,9 @@ import uk.co.matdev.SIMOnline.core.battle.BattleManager;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 
 public class Main extends BasicGame {
-    public static int WIDTH = 1920;
-    public static int HEIGHT = 1080;
-    public static final boolean FULLSCREEN = true;
+    public static int WIDTH = 1500;
+    public static int HEIGHT = 1000;
+    public static final boolean FULLSCREEN = false;
     public static int MAX_FRAMERATE = 60;
 
     private ObjectManager oM;
