@@ -27,7 +27,6 @@ public class MilitiaRussianUnit extends RussianUnit {
 
     @Override
     public void draw(SIMGraphics g) {
-
         if (mTargetVelocity.getY() == 1){
             g.getGraphics().setColor(Color.blue);
         }else if (mTargetVelocity.getY() == -1){
@@ -36,8 +35,9 @@ public class MilitiaRussianUnit extends RussianUnit {
             g.getGraphics().setColor(Color.red);
         }
 
-
         g.getGraphics().fillOval(0, 0, g.getValidRectangle().getWidth(), g.getValidRectangle().getHeight());
+
+        drawHealthBar(g);
     }
 
     @Override

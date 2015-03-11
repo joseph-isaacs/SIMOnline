@@ -1,5 +1,7 @@
 package uk.co.matdev.SIMOnline.core.battle.units;
 
+import org.newdawn.slick.Color;
+import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.SIMObject;
 import uk.co.matdev.SIMOnline.core.battle.CollisionReport;
 import uk.co.matdev.SIMOnline.core.battle.eDeaths;
@@ -20,7 +22,8 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
     protected int mCritChance; // 0 <= Percentage <= 100
     protected int mHaste; // Any fairly small value relative to other units >= 0
 
-    protected int mHealth; // > 0
+    protected int mHealth; // 0 < Health <= MaxHealth
+    protected int mMaxHealth;
     protected int mDefence; // >= 0
     protected int mDodgeChance; // 0 <= Percentage <= 100
 
@@ -46,6 +49,7 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         setCritChance(CritChance);
         setHaste(Haste);
         setHealth(Health);
+        setMaxHealth(Health);
         setDefence(Defence);
         setDodgeChance(DodgeChange);
     }
@@ -173,6 +177,24 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         return mVelocity;
     }
 
+    protected void drawHealthBar(SIMGraphics g){
+        //Calculate length of bar in pixels
+
+        //Draw white background
+        //g.getGraphics().setColor(new Color(255,255,255,75));
+//        g.getGraphics().drawLine(0,0,g.getValidRectangle().getWidth() - 1,0);
+//        g.getGraphics().drawLine(0,1,g.getValidRectangle().getWidth() - 1,1);
+//        g.getGraphics().drawLine(0,2,g.getValidRectangle().getWidth() - 1,2);
+//        g.getGraphics().drawLine(0,3,g.getValidRectangle().getWidth() - 1,3);
+        //g.getGraphics().fillRect(0,0,g.getValidRectangle().getWidth(),g.getValidRectangle().getHeight());
+        //Draw red health fill
+        g.getGraphics().setColor(new Color(0,0,0,75));
+        int a = (int) Math.ceil((float) getHealth() / (float) getMaxHealth() * (float) (g.getValidRectangle().getWidth() - 2));
+//        g.getGraphics().drawLine(0,1,a,1);
+//        g.getGraphics().drawLine(0,2,a,2);
+        g.getGraphics().fillRect(1,1,a,g.getValidRectangle().getHeight() - 2);
+    }
+
     public void setVelocity(Vector2d<Integer> velocity) {
         mVelocity = velocity;
     }
@@ -249,7 +271,19 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         mDodgeChance = dodgeChance;
     }
 
-    public boolean isFighting() {return mFighting;}
+    public boolean isFighting() {
+        return mFighting;
+    }
 
-    public void setFighting(boolean fighting) {mFighting = fighting;}
+    public void setFighting(boolean fighting) {
+        mFighting = fighting;
+    }
+
+    public int getMaxHealth() {
+        return mMaxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        mMaxHealth = maxHealth;
+    }
 }

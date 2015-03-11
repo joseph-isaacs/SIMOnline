@@ -30,8 +30,8 @@ public class BattlefieldManager implements SIMObject {
     }
 
     private BattlefieldUnit[][] mUnitPositions;
-    private Vector2d<Integer> mWorldSize = new Vector2d<>(80,60);
-    private int mTileSize = 10;
+    private Vector2d<Integer> mWorldSize = new Vector2d<>(50,60);
+    private int mTileSize = 20;
     private boolean mBattlePhase = false;
 
     /**
@@ -88,19 +88,17 @@ public class BattlefieldManager implements SIMObject {
 //            }
 //        }
 
-//        for (int i = 0; i < 20; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                mUnitPositions[2+i][10+j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-//                mUnitPositions[30+i][j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(0,1)));
-//                mUnitPositions[30+i][59-j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(0,-1)));
-//                mUnitPositions[70-i][11+j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
-//            }
-//        }
-
-        for (int i = 0; i < 10; i++) {
-            mUnitPositions[2][2*i] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-            mUnitPositions[10][2*i] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
+        for (int j = 0; j < 40; j++) {
+            for (int i = 0; i < 2; i++) {
+                mUnitPositions[i][j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
+                mUnitPositions[49-i][j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
+            }
         }
+
+//        for (int i = 0; i < 10; i++) {
+//            mUnitPositions[2][2*i] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
+//            mUnitPositions[10][2*i] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
+//        }
 
 
 
@@ -110,7 +108,7 @@ public class BattlefieldManager implements SIMObject {
 //        mUnitPositions[15][2] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
 
 //        int count = 0;
-//        while (count < 300) {
+//        while (count < 500) {
 //            int x = SIMRandom.range(0, mWorldSize.getX() - 1);
 //            int y = SIMRandom.range(0,mWorldSize.getY() - 1);
 //            if (mUnitPositions[x][y] == null){
