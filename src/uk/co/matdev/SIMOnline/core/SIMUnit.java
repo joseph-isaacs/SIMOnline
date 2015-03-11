@@ -13,7 +13,7 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
 
     protected int mMaxDamage;
     protected int mMinDamage;
-    protected int mCritMultiplyer;
+    protected int mCritMultiplier;
     protected int mCritChance;
     protected int mHaste;
 
@@ -34,6 +34,17 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         }
     }
 
+    protected void setAllStats(int MaxDamage, int MinDamage, int CritMultiplier, int CritChance, int Haste, int Health, int Defence, int DodgeChange){
+        setMaxDamage(MaxDamage);
+        setMinDamage(MinDamage);
+        setCritMultiplier(CritMultiplier);
+        setCritChance(CritChance);
+        setHaste(Haste);
+        setHealth(Health);
+        setDefence(Defence);
+        setDodgeChance(DodgeChange);
+    }
+
     protected Vector2d<Integer> updateTurningVelocity(boolean frontCollision){
         Vector2d<Integer> v = computeTurningVelocity(mTargetVelocity, mVelocity, frontCollision);
         if (v.equals(new Vector2d<>(0,0))){
@@ -44,7 +55,7 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         return new Vector2d<Integer>(mVelocity);
     }
 
-    public void turnArround(){
+    public void turnAround(){
         mVelocity = new Vector2d<>(-mVelocity.getX(),-mVelocity.getY());
     }
 
@@ -98,12 +109,12 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         mMinDamage = minDamage;
     }
 
-    public int getCritMultiplyer() {
-        return mCritMultiplyer;
+    public int getCritMultiplier() {
+        return mCritMultiplier;
     }
 
-    public void setCritMultiplyer(int critMultiplyer) {
-        mCritMultiplyer = critMultiplyer;
+    public void setCritMultiplier(int critMultiplier) {
+        mCritMultiplier = critMultiplier;
     }
 
     public int getCritChance() {

@@ -6,11 +6,11 @@ import uk.co.matdev.SIMOnline.maths.Vector2d;
 import static java.lang.System.identityHashCode;
 
 /**
- * Created by Matt on 05/03/2015.
+ * Created by Matt on 10/03/2015.
  */
-public class MilitiaRussianUnit extends RussianUnit {
+public class NormalSlimeUnit extends SlimeUnit {
 
-    MilitiaRussianUnit(Vector2d<Integer> targetVelocity){
+    NormalSlimeUnit(Vector2d<Integer> targetVelocity){
         mTargetVelocity = new Vector2d<Integer>(targetVelocity);
         mVelocity = new Vector2d<Integer>(targetVelocity);
 
@@ -25,7 +25,7 @@ public class MilitiaRussianUnit extends RussianUnit {
             return v;
         }
 
-        //Assert: not colliding with inanimateUnit or RussianUnit
+        //Assert: not colliding with inanimateUnit or SlimeUnit
         //Therefore, definitely something to fight
         //TODO: Add code for fighting
         return new Vector2d<Integer>(0,0);
@@ -38,15 +38,11 @@ public class MilitiaRussianUnit extends RussianUnit {
 
     @Override
     public void draw(SIMGraphics g) {
-
-        if (mTargetVelocity.getY() == 1){
-            g.getGraphics().setColor(Color.blue);
-        }else if (mTargetVelocity.getY() == -1){
+        if (mTargetVelocity.getY() == -1){
             g.getGraphics().setColor(Color.black);
         }else{
-            g.getGraphics().setColor(Color.red);
+            g.getGraphics().setColor(Color.green);
         }
-
 
         g.getGraphics().fillOval(0, 0, g.getValidRectangle().getWidth(), g.getValidRectangle().getHeight());
     }
