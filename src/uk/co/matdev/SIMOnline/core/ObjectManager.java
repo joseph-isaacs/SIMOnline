@@ -1,7 +1,5 @@
 package uk.co.matdev.SIMOnline.core;
 
-import uk.co.matdev.SIMOnline.core.battle.SIMGraphics;
-
 import java.util.LinkedList;
 import java.util.List;
 

@@ -1,8 +1,10 @@
 package uk.co.matdev.SIMOnline.core.battle;
 
 import org.newdawn.slick.Color;
-import uk.co.matdev.SIMOnline.core.RussianUnit;
+import uk.co.matdev.SIMOnline.core.battle.units.RussianUnit;
+import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.SIMObject;
+import uk.co.matdev.SIMOnline.core.battle.units.*;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 import uk.co.matdev.SIMOnline.maths.SIMRandom;
 import uk.co.matdev.SIMOnline.maths.Vector2d;

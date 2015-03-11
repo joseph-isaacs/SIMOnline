@@ -1,6 +1,5 @@
-package uk.co.matdev.SIMOnline.core;
+package uk.co.matdev.SIMOnline.core.battle.units;
 
-import uk.co.matdev.SIMOnline.core.battle.SIMUnit;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 /**

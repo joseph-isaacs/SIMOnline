@@ -1,6 +1,7 @@
-package uk.co.matdev.SIMOnline.core.battle;
+package uk.co.matdev.SIMOnline.core.battle.units;
 
 import org.newdawn.slick.Color;
+import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 import static java.lang.System.identityHashCode;
@@ -10,7 +11,7 @@ import static java.lang.System.identityHashCode;
  */
 public class NormalSlimeUnit extends SlimeUnit {
 
-    NormalSlimeUnit(Vector2d<Integer> targetVelocity){
+    public NormalSlimeUnit(Vector2d<Integer> targetVelocity){
         mTargetVelocity = new Vector2d<Integer>(targetVelocity);
         mVelocity = new Vector2d<Integer>(targetVelocity);
 

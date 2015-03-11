@@ -1,6 +1,7 @@
-package uk.co.matdev.SIMOnline.core.battle;
+package uk.co.matdev.SIMOnline.core.battle.units;
 
 import org.newdawn.slick.Color;
+import uk.co.matdev.SIMOnline.core.SIMGraphics;
 
 import static java.lang.System.identityHashCode;
 
@@ -8,8 +9,6 @@ import static java.lang.System.identityHashCode;
  * Created by Matt on 05/03/2015.
  */
 public class BlockInanimateUnit extends InanimateUnit{
-
-
 
     @Override
     public void die() {
