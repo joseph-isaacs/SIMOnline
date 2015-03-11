@@ -23,11 +23,11 @@ public abstract class SlimeUnit extends SIMUnit{
         }else{
             //Assert: not colliding with inanimateUnit or SlimeUnit
             //Therefore, definitely something to fight
-            if (fighting){
-                fighting = false;
+            if (mFighting){
+                mFighting = false;
                 return new CollisionReport(new Vector2d<Integer>(0,0), fight(unit));
             }else{
-                fighting = true;
+                mFighting = true;
                 return new CollisionReport(new Vector2d<Integer>(0,0), eDeaths.NONE);
             }
         }

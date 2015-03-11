@@ -18,12 +18,12 @@ public class NormalSlimeUnit extends SlimeUnit {
         mVelocity = new Vector2d<Integer>(targetVelocity);
 
         //MAXDAM_MINDAM_CRITMULT_CRITCHANCE_HASTE_HEALTH_DEFENCE_DODGE
-        setAllStats(10,7,2,5,60,100,5,5);
+        setAllStats(13,10,2,5,40,100,5,5);
     }
 
     @Override
     public void die() {
-        System.out.println("green dies");
+
     }
 
     @Override

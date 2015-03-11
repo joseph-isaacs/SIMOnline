@@ -88,17 +88,26 @@ public class BattlefieldManager implements SIMObject {
 //            }
 //        }
 
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 3; j++) {
-                mUnitPositions[2+i][10+j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-                mUnitPositions[30+i][j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(0,1)));
-                mUnitPositions[30+i][59-j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(0,-1)));
-                mUnitPositions[70-i][11+j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
-            }
+//        for (int i = 0; i < 20; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                mUnitPositions[2+i][10+j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
+//                mUnitPositions[30+i][j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(0,1)));
+//                mUnitPositions[30+i][59-j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(0,-1)));
+//                mUnitPositions[70-i][11+j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
+//            }
+//        }
+
+        for (int i = 0; i < 10; i++) {
+            mUnitPositions[2][2*i] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
+            mUnitPositions[10][2*i] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
         }
 
-//        mUnitPositions[2][10] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-//        mUnitPositions[11][10] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
+
+
+//        mUnitPositions[2][2] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
+//        mUnitPositions[11][3] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
+//
+//        mUnitPositions[15][2] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
 
 //        int count = 0;
 //        while (count < 300) {
@@ -215,13 +224,14 @@ public class BattlefieldManager implements SIMObject {
         switch (report.getDeaths()){
             case NONE: return true;
             case COLLIDER:
-                kill(colliderPos);
+                kill(colliderPos); break;
             case COLLIDED:
                 kill(collidedPos);
                 return true;
             case BOTH:
                 kill(colliderPos);
                 kill(collidedPos);
+                break;
         }
         return false;
     }
@@ -240,10 +250,11 @@ public class BattlefieldManager implements SIMObject {
         if(x == newXPos && y == newYPos)
             return true;
         else if(mUnitPositions[newXPos][newYPos] == null) {
-             mUnitPositions[newXPos][newYPos] = new BattlefieldUnit(battleUnit.unit, mBattlePhase);
-             mUnitPositions[x][y] = null;
+            mUnitPositions[newXPos][newYPos] = new BattlefieldUnit(battleUnit.unit, mBattlePhase);
+            mUnitPositions[x][y] = null;
+            battleUnit.unit.setFighting(false);
 
-             return true;
+            return true;
         }
         return false;
     }
