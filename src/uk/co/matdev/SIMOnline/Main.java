@@ -4,7 +4,7 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.*;
 import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.ObjectManager;
-import uk.co.matdev.SIMOnline.core.BattleManager;
+import uk.co.matdev.SIMOnline.core.battle.BattleManager;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 
 public class Main extends BasicGame {
@@ -28,9 +28,16 @@ public class Main extends BasicGame {
         oM.addObject(new BattleManager());
     }
 
+
+    private int counter = 0;
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
-        oM.doUpdate();
+        counter += i;
+       if (counter >= 1000){
+            counter = 0;
+            oM.doUpdate();
+        }
+       // oM.doUpdate();
     }
 
     @Override

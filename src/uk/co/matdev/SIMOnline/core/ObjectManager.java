@@ -1,7 +1,5 @@
 package uk.co.matdev.SIMOnline.core;
 
-import org.newdawn.slick.Graphics;
-
 import java.util.LinkedList;
 import java.util.List;
 
