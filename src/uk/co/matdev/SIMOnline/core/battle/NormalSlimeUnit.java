@@ -1,4 +1,4 @@
-package uk.co.matdev.SIMOnline.core;
+package uk.co.matdev.SIMOnline.core.battle;
 
 import org.newdawn.slick.Color;
 import uk.co.matdev.SIMOnline.maths.Vector2d;

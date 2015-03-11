@@ -1,6 +1,7 @@
-package uk.co.matdev.SIMOnline.core;
+package uk.co.matdev.SIMOnline.core.battle;
 
 import org.newdawn.slick.Color;
+import uk.co.matdev.SIMOnline.core.RussianUnit;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 import static java.lang.System.identityHashCode;
@@ -28,6 +29,7 @@ public class MilitiaRussianUnit extends RussianUnit {
         //Assert: not colliding with inanimateUnit or RussianUnit
         //Therefore, definitely something to fight
         //TODO: Add code for fighting
+
         return new Vector2d<Integer>(0,0);
     }
 

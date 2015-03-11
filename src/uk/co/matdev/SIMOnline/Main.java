@@ -2,9 +2,9 @@ package uk.co.matdev.SIMOnline;
 
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.*;
-import uk.co.matdev.SIMOnline.core.SIMGraphics;
+import uk.co.matdev.SIMOnline.core.battle.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.ObjectManager;
-import uk.co.matdev.SIMOnline.core.BattleManager;
+import uk.co.matdev.SIMOnline.core.battle.BattleManager;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 
 public class Main extends BasicGame {

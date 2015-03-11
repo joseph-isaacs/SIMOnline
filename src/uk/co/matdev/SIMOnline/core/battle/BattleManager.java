@@ -1,8 +1,8 @@
-package uk.co.matdev.SIMOnline.core;
+package uk.co.matdev.SIMOnline.core.battle;
 
 
+import uk.co.matdev.SIMOnline.core.SIMObject;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
-import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 /**
  * Created by joeisaacs on 23/02/2015.

@@ -1,5 +1,6 @@
-package uk.co.matdev.SIMOnline.core;
+package uk.co.matdev.SIMOnline.core.battle;
 
+import uk.co.matdev.SIMOnline.core.SIMObject;
 import uk.co.matdev.SIMOnline.maths.SIMRandom;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
