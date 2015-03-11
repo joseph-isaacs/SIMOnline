@@ -1,5 +1,6 @@
 package uk.co.matdev.SIMOnline.core.battle;
 
+import com.sun.istack.internal.NotNull;
 import org.newdawn.slick.Color;
 import uk.co.matdev.SIMOnline.core.battle.units.RussianUnit;
 import uk.co.matdev.SIMOnline.core.SIMGraphics;
@@ -48,76 +49,16 @@ public class BattlefieldManager implements SIMObject {
      */
     BattlefieldManager(){
         mUnitPositions = new BattlefieldUnit[mWorldSize.getX()][mWorldSize.getY()];
-
-//        mUnitPositions[5][1] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][2] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][3] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][4] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][5] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][6] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][7] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][8] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][9] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][10] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][11] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][12] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][13] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][14] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][15] = new BattlefieldUnit(new BlockInanimateUnit());
-//
-//        mUnitPositions[5][16] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][17] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][18] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[5][19] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][1] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][2] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][3] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][4] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][5] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[14][5] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][9] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[16][10] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][11] = new BattlefieldUnit(new BlockInanimateUnit());
-//        mUnitPositions[15][11] = new BattlefieldUnit(new BlockInanimateUnit());
-
-
-//        for (int j = 1; j < 3; j++) {
-//            for (int i = 0; i < 20; i++) {
-//                mUnitPositions[j][2+i+j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(1,0)));
-//                mUnitPositions[70+j][2+i+j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(-1,0)));
-//            }
-//        }
-
-//        for (int i = 0; i < 20; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                mUnitPositions[2+i][10+j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-//                mUnitPositions[30+i][j] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(0,1)));
-//                mUnitPositions[30+i][59-j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(0,-1)));
-//                mUnitPositions[70-i][11+j] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
-//            }
-//        }
-
-        for (int i = 0; i < 10; i++) {
-            mUnitPositions[2][2*i] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-            mUnitPositions[10][2*i] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
+        for (int i = 0; i != mWorldSize.getY()-1; i++) {
+            spawnUnit(new endUnit(), new Vector2d<Integer>(0, i));
+            spawnUnit(new endUnit(), new Vector2d<Integer>(mWorldSize.getX()-1, i));
         }
+    }
 
-
-
-//        mUnitPositions[2][2] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-//        mUnitPositions[11][3] = new BattlefieldUnit(new MilitiaRussianUnit(new Vector2d<Integer>(1,0)));
-//
-//        mUnitPositions[15][2] = new BattlefieldUnit(new NormalSlimeUnit(new Vector2d<Integer>(-1,0)));
-
-//        int count = 0;
-//        while (count < 300) {
-//            int x = SIMRandom.range(0, mWorldSize.getX() - 1);
-//            int y = SIMRandom.range(0,mWorldSize.getY() - 1);
-//            if (mUnitPositions[x][y] == null){
-//                mUnitPositions[x][y] = new BattlefieldUnit(new BlockInanimateUnit());
-//                count++;
-//            }
-//        }
+    public void spawnUnit(@NotNull SIMUnit toSpawn, Vector2d<Integer> where){
+        if(checkGridPosition(where)){
+            mUnitPositions[where.getX()][where.getY()] = new BattlefieldUnit(toSpawn, mBattlePhase);
+        }
     }
 
 
@@ -125,7 +66,7 @@ public class BattlefieldManager implements SIMObject {
     public void draw(SIMGraphics g) {
         Rectangle2d<Integer> tmpRec = g.getValidRectangle();
         g.getGraphics().setColor(Color.lightGray);
-        for (int i = 0; i < mWorldSize.getX(); i++) {
+        for (int i = 1; i < mWorldSize.getX() - 1; i++) {
             for(int j = 0; j < mWorldSize.getY(); j++){
                 g.getGraphics().fillRect(i * mTileSize + i, j * mTileSize + j, mTileSize, mTileSize);
             }

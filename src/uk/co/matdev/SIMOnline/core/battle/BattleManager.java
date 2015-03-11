@@ -1,9 +1,12 @@
 package uk.co.matdev.SIMOnline.core.battle;
 
 
+import com.sun.istack.internal.NotNull;
 import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.SIMObject;
+import uk.co.matdev.SIMOnline.core.battle.units.SIMUnit;
 import uk.co.matdev.SIMOnline.maths.Rectangle2d;
+import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 /**
  * Created by joeisaacs on 23/02/2015.
@@ -11,7 +14,8 @@ import uk.co.matdev.SIMOnline.maths.Rectangle2d;
 public class BattleManager implements SIMObject {
 
     BattlefieldManager mWorld = new BattlefieldManager();
-   // BattlefieldManager mWorld2 = new BattlefieldManager(new Vector2d<>(800, 20));
+
+    public void spawnUnit(@NotNull SIMUnit toSpawn, Vector2d<Integer> where){ mWorld.spawnUnit(toSpawn,where);}
 
     @Override
     public void draw(SIMGraphics g) {

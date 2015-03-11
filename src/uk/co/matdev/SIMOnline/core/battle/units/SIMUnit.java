@@ -34,7 +34,11 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
     public CollisionReport collision(SIMUnit unit, boolean frontCollision){
         if (unit instanceof InanimateUnit){
             return new CollisionReport(updateTurningVelocity(frontCollision), eDeaths.NONE); //Some side to side motion
-        }else{
+        }
+        else if (unit instanceof endUnit) {
+            return new CollisionReport(new Vector2d<Integer> (0,0), eDeaths.COLLIDER);
+        }
+        else{
             return null;
         }
     }

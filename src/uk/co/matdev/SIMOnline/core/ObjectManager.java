@@ -1,5 +1,9 @@
 package uk.co.matdev.SIMOnline.core;
 
+import com.sun.istack.internal.NotNull;
+import uk.co.matdev.SIMOnline.core.battle.units.SIMUnit;
+import uk.co.matdev.SIMOnline.maths.Vector2d;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +18,7 @@ public class ObjectManager implements SIMObject{
     public void addObject(SIMObject o){
         objects.add(o);
     }
+
 
     @Override
     public void draw(SIMGraphics g) {
