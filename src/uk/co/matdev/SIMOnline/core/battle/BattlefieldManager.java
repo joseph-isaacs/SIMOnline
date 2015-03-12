@@ -32,7 +32,7 @@ public class BattlefieldManager implements SIMObject {
 
     private BattlefieldUnit[][] mUnitPositions;
     private Vector2d<Integer> mWorldSize = new Vector2d<>(80,60);
-    private int mTileSize = 10;
+    private int mTileSize = 15;
     private boolean mBattlePhase = false;
 
     /**

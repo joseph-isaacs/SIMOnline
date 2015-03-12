@@ -159,8 +159,6 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
     private void hasKilled(SIMUnit defender) {}
 
     private void killedBy(SIMUnit defender) {
-        System.out.println("Died, leaving attacker with " + defender.getHealth() + " health.");
-        System.out.println();
     }
 
     private void hasAttacked(int baseDmg, SIMUnit defender) {}

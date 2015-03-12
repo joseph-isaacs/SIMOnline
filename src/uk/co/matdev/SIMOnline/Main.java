@@ -13,8 +13,8 @@ import uk.co.matdev.SIMOnline.maths.SIMRandom;
 import uk.co.matdev.SIMOnline.maths.Vector2d;
 
 public class Main extends BasicGame {
-    public static int WIDTH = 1000;
-    public static int HEIGHT = 1000;
+    public static int WIDTH = 1400;
+    public static int HEIGHT = 1100;
     public static final boolean FULLSCREEN = false;
     public static int MAX_FRAMERATE = 60;
 
@@ -40,7 +40,7 @@ public class Main extends BasicGame {
     @Override
     public void update(GameContainer gameContainer, int i) throws SlickException {
         counter += i;
-       if (counter >= 1){
+       if (counter >= 1000/30){
             counter = 0;
             oM.doUpdate();
         }
