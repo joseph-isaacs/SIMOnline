@@ -35,6 +35,7 @@ public class NormalSlimeUnit extends SlimeUnit {
         }
 
         g.getGraphics().fillOval(0, 0, g.getValidRectangle().getWidth(), g.getValidRectangle().getHeight());
+        drawHealthBar(g);
     }
 
     @Override

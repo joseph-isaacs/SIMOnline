@@ -1,5 +1,7 @@
 package uk.co.matdev.SIMOnline.core.battle.units;
 
+import org.newdawn.slick.Color;
+import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.SIMObject;
 import uk.co.matdev.SIMOnline.core.battle.CollisionReport;
 import uk.co.matdev.SIMOnline.core.battle.eDeaths;
@@ -20,7 +22,8 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
     protected int mCritChance; // 0 <= Percentage <= 100
     protected int mHaste; // Any fairly small value relative to other units >= 0
 
-    protected int mHealth; // > 0
+    protected int mHealth; // 0 < Health <= MaxHealth
+    protected int mMaxHealth;
     protected int mDefence; // >= 0
     protected int mDodgeChance; // 0 <= Percentage <= 100
 
@@ -50,6 +53,7 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         setCritChance(CritChance);
         setHaste(Haste);
         setHealth(Health);
+        setMaxHealth(Health);
         setDefence(Defence);
         setDodgeChance(DodgeChange);
     }
@@ -177,6 +181,17 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         return mVelocity;
     }
 
+    protected void drawHealthBar(SIMGraphics g){
+        //Calculate length of bar in pixels
+        int a = (int) Math.ceil((float) getHealth() / (float) getMaxHealth() * (float) (g.getValidRectangle().getWidth() - 2));
+        //Draw white background
+        g.getGraphics().setColor(Color.white);
+        g.getGraphics().fillRect(0,g.getValidRectangle().getHeight()/2-2,g.getValidRectangle().getWidth(),4);
+        //Draw red health fill
+        g.getGraphics().setColor(Color.red);
+        g.getGraphics().fillRect(1,g.getValidRectangle().getHeight()/2-1,a,2);
+    }
+
     public void setVelocity(Vector2d<Integer> velocity) {
         mVelocity = velocity;
     }
@@ -253,7 +268,19 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
         mDodgeChance = dodgeChance;
     }
 
-    public boolean isFighting() {return mFighting;}
+    public boolean isFighting() {
+        return mFighting;
+    }
 
-    public void setFighting(boolean fighting) {mFighting = fighting;}
+    public void setFighting(boolean fighting) {
+        mFighting = fighting;
+    }
+
+    public int getMaxHealth() {
+        return mMaxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        mMaxHealth = maxHealth;
+    }
 }
