@@ -1,6 +1,7 @@
 package uk.co.matdev.SIMOnline.core.battle.units;
 
 import org.newdawn.slick.Color;
+import uk.co.matdev.SIMOnline.core.Globals;
 import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.SIMObject;
 import uk.co.matdev.SIMOnline.core.battle.CollisionReport;
@@ -180,6 +181,8 @@ public abstract class SIMUnit implements SIMObject, Comparable<SIMUnit>{
     }
 
     protected void drawHealthBar(SIMGraphics g){
+        if (!Globals.getInstance().isHealthBarsEnabled()) return;
+
         //Calculate length of bar in pixels
         int a = (int) Math.ceil((float) getHealth() / (float) getMaxHealth() * (float) (g.getValidRectangle().getWidth() - 2));
         //Draw white background

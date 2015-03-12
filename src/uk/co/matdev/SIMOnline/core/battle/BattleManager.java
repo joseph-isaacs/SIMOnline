@@ -26,6 +26,7 @@ public class BattleManager implements SIMObject {
     public BattleManager(Input input){
         p1  = new HumanPlayer(input);
         p2  = new EasyAIPlayer();
+        input.addKeyListener(mWorld);
     }
 
     public void spawnUnit(@NotNull SIMUnit toSpawn, Vector2d<Integer> where){ mWorld.spawnUnit(toSpawn,where);}

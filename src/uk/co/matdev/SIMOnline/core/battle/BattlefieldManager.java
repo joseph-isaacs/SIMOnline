@@ -2,6 +2,9 @@ package uk.co.matdev.SIMOnline.core.battle;
 
 import com.sun.istack.internal.NotNull;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.KeyListener;
+import uk.co.matdev.SIMOnline.core.Globals;
 import uk.co.matdev.SIMOnline.core.battle.units.RussianUnit;
 import uk.co.matdev.SIMOnline.core.SIMGraphics;
 import uk.co.matdev.SIMOnline.core.SIMObject;
@@ -14,7 +17,7 @@ import uk.co.matdev.SIMOnline.maths.Vector2d;
 /**
  * Created by joeisaacs on 23/02/2015.
  */
-public class BattlefieldManager implements SIMObject {
+public class BattlefieldManager implements SIMObject, KeyListener {
 
     private class BattlefieldUnit {
         BattlefieldUnit(SIMUnit unit){
@@ -199,4 +202,31 @@ public class BattlefieldManager implements SIMObject {
         }
         return false;
     }
+
+    @Override
+    public void keyPressed(int i, char c) {
+        if (c == 'h'){
+            if (Globals.getInstance().isHealthBarsEnabled()){
+                Globals.getInstance().setHealthBarsEnabled(false);
+            }else{
+                Globals.getInstance().setHealthBarsEnabled(true);
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(int i, char c) {
+
+    }
+
+    @Override
+    public void setInput(Input input) {}
+    @Override
+    public boolean isAcceptingInput() {
+        return true;
+    }
+    @Override
+    public void inputEnded() {}
+    @Override
+    public void inputStarted() {}
 }
