@@ -39,5 +39,7 @@ public class BattleManager implements SIMObject {
     @Override
     public void doUpdate() {
         mWorld.doUpdate();
+        p1.applySpawn(mWorld);
+        p2.applySpawn(mWorld);
     }
 }
