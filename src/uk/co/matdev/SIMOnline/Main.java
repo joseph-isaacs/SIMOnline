@@ -18,6 +18,7 @@ public class Main extends BasicGame {
     public static final boolean FULLSCREEN = false;
     public static int MAX_FRAMERATE = 60;
 
+
     private ObjectManager oM;
     private BattleManager bM;
 
@@ -31,8 +32,13 @@ public class Main extends BasicGame {
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
         oM = new ObjectManager();
-        bM = new BattleManager();
+        bM = new BattleManager(gameContainer.getInput());
         oM.addObject(bM);
+    }
+
+    @Override
+    public void keyPressed(int i, char c) {
+        System.out.println("Main: " + i);
     }
 
 
